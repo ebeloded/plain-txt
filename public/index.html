@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plain TXT</title>
+    <link rel="manifest" href="manifest.json" />
+    <style>
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        background: #191d21;
+      }
+      body {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-items: center;
+      }
+      #write {
+        box-sizing: border-box;
+        outline: none;
+        border: none;
+        resize: none;
+        padding: 40px;
+        max-width: 740px;
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+        color: rgba(255, 255, 255, 0.81);
+        background: none;
+        font-size: 14px;
+        font-family: Menlo, Monaco, 'Courier New', monospace;
+        line-height: 1.7;
+      }
+    </style>
+    <script>
+      const CONTENT = 'content'
+      navigator.serviceWorker.register('/sw.js').then((sw) => {
+        console.log({ sw })
+      })
+      function save(value) {}
+    </script>
+  </head>
+  <body>
+    <textarea
+      id="write"
+      autofocus
+      oninput="localStorage.setItem(CONTENT, this.value)"
+    ></textarea>
+    <script>
+      document.getElementById('write').value = localStorage.getItem(CONTENT)
+    </script>
+  </body>
+</html>
